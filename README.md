@@ -67,6 +67,7 @@ CGTTNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGGAG
 #### Step 1: Download nanom6A package
 Download nanom6A_2021_3_18.tar.gz package can be downloaded from following link:
 [https://drive.google.com/drive/folders/1Dodt6uJC7lBihSNgT3Mexzpl_uqBagu0?usp=sharing](https://drive.google.com/drive/folders/1Dodt6uJC7lBihSNgT3Mexzpl_uqBagu0?usp=sharing)
+Make sure the package and the script in the same directory
 
 #### Step 2: Install the dependence
 
