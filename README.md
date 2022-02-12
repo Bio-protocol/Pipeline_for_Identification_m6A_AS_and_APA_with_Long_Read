@@ -134,7 +134,7 @@ sh workflow/run_prapi.sh
 The result directory of __nanom6A__ includes ratio.x.tsv which contains the information of gene name, chromosome, the coordinate site of m6A, the number of m6A modified reads, the number of total reads, and the ratio of the m6A site. The file named genome_abandance.x.bed contains information of name and coordinate information of chromosome, gene name, ID and position of single FAST5 read and motif (kmer). The x in ratio.x.tsv and abandance.x.bed represents the probability of modification. The default probability is 0.5.
 
 The output figure provides structure of transcripts and m6A sites highlighted by purple vertical line
-![](graphs/figure2.png)
+![](graphs/figure2.jpg)
 
 
 
