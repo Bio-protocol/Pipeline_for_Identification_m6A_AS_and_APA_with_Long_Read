@@ -2,7 +2,7 @@
 
 # NanoPrapi
 
-This is an analysis pipeline for identification of m6A, alternative splicing and polyadenylation using Third-generation sequencing.
+Nanopore sequencing based on Oxford Nanopore Technologies (ONT) and Pacific BioSciences (PacBio) single-molecule real-time (SMRT) long-read isoform sequencing (Iso-Seq) have shown great potential in detecting post-transcriptional regulation. Here, we provide a comprehensive computational procedure for the quantification of RNA modification in single-base resolution based on DRS data. Moreover, we also provided procedure on the identification of alternative splicing (AS) and alternative polyadenylation (APA) based on both DRS and PacBio Iso-Seq data. The entire step was based on two packages (Nanom6A and PRAPI), which were based on Python language on Linux system.
 
 This pipeline include nanom6A([https://github.com/gaoyubang/nanom6A](https://github.com/gaoyubang/nanom6A)) to identify m6A in single-base
 
@@ -100,13 +100,13 @@ Make sure the package and the script in the same directory
 #### Step 2: Install the dependence
 
 ```
-sh workflow/install_nanom6A.sh
+sh workflow/1_install_nanom6A.sh
 ```
 
 #### Step 3: Identification of modified nucleotide using nanom6A
 
 ```
-sh workflow/run_nanom6A.sh
+sh workflow/2_run_nanom6A.sh
 ```
 
 
@@ -116,13 +116,13 @@ sh workflow/run_nanom6A.sh
 #### Step 1: Download PRAPI package
 
 ```
-sh workflow/install_prapi.sh
+sh workflow/3_install_prapi.sh
 ```
 
 #### Step 2: Identification of AS and APA 
 
 ```
-sh workflow/run_prapi.sh
+sh workflow/4_run_prapi.sh
 ```
 
 
