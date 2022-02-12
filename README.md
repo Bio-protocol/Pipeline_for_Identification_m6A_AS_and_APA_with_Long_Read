@@ -59,7 +59,10 @@ CGTTNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNGGAG
 ```
 
 The bed6 file corresponding to each reference transcript in gene:
-
+```
+chrom   st  ed  name    .   strand
+chr7    5566779 5570232 ACTB    .   -
+```
 
 
 
@@ -74,7 +77,7 @@ The bed6 file corresponding to each reference transcript in gene:
 
 Configuration file `conf.txt` can be edited by Vim text Editor in Linux system and contains several important parameters:
 
--Long read: PacBio Iso-SeqIso-seq or DRS long reads with FASTA format
+-Long read: PacBio Iso-seq or DRS long reads with FASTA format
 
 -Genome_Annotion file `phe.txt`: Reference annotation with [GenePred](https://genome.ucsc.edu/FAQ/FAQformat.html#format9) format
 
@@ -103,14 +106,6 @@ sh workflow/install_nanom6A.sh
 sh workflow/run_nanom6A.sh
 ```
 
-#### Step 4: view the results
-
-- Results can be visualized by clicking `output/multiqc_report.html`.
-- Alternatively, you can plot the results yourself using the below python code.
-
-```
-nanoplot --input result_final -o plot_nano_plot
-```
 
 
 ### Usage for PRAPI
