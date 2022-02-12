@@ -2,7 +2,7 @@
 
 # NanoPrapi
 
-Nanopore sequencing based on Oxford Nanopore Technologies (ONT) and Pacific BioSciences (PacBio) single-molecule real-time (SMRT) long-read isoform sequencing (Iso-Seq) have shown great potential in detecting post-transcriptional regulation. Here, we provide a comprehensive computational procedure for the quantification of RNA modification in single-base resolution based on DRS data. Moreover, we also provided procedure on the identification of alternative splicing (AS) and alternative polyadenylation (APA) based on both DRS and PacBio Iso-Seq data. The entire step was based on two packages (Nanom6A and PRAPI), which were based on Python language on Linux system.
+Nanopore sequencing based on Oxford Nanopore Technologies (ONT) and Pacific BioSciences (PacBio) single-molecule real-time (SMRT) long-read isoform sequencing (Iso-Seq) have shown great potential in detecting RNA modification and post-transcriptional regulation. This is a comprehensive computational procedure for the quantification of RNA modification in single-base resolution based on DRS data. Moreover, we also provided procedure on the identification of alternative splicing (AS) and alternative polyadenylation (APA) based on both DRS and PacBio Iso-Seq data. The entire step was based on two packages (Nanom6A and PRAPI), which were based on Python language on Linux system.
 
 This pipeline include nanom6A([https://github.com/gaoyubang/nanom6A](https://github.com/gaoyubang/nanom6A)) to identify m6A in single-base
 
