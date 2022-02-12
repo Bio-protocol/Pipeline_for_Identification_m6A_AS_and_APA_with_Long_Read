@@ -10,6 +10,8 @@ and
 
 PRAPI([http://forestry.fafu.edu.cn/tool/PRAPI/help.php](http://forestry.fafu.edu.cn/tool/PRAPI/help.php)) to detect AS and APA events.
 
+
+## Overview of the workflow: 
 This is the workflow to show a step-by-step pipeline to identify m6A, AS and APA with long reads data.
 
 ![](graphs/figure1.png)
@@ -45,7 +47,7 @@ This is the workflow to show a step-by-step pipeline to identify m6A, AS and APA
 
 The `fast5` file from Nanopore DRS, which included raw signal, is stored in HDF5 format and could be viewed by [HDFView](https://www.hdfgroup.org/downloads/hdfview).
 This is a typical fast5 file:
-
+![](graphs/figure4.png)
 
 
 Each entry in a `FASTA` files consists of 2 lines:  
