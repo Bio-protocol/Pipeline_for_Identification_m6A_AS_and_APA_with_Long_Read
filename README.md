@@ -20,7 +20,7 @@ This is the workflow to show a step-by-step pipeline to identify m6A, AS and APA
     - The workflow was constructed based on the __centos__ and __ubuntu__.
 
 - __Required software and versions__: 
-    - [Anaconda](https://docs.conda.io/en/latest/miniconda.html)
+    - [Anaconda](https://www.anaconda.com/) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
     - [Guppy](https://community.nanoporetech.com/downloads) v3.1.5
     - [Ont_fast5_api](https://github.com/nanoporetech/ont_fast5_api) v0.3.2
     - [Tombo](https://github.com/nanoporetech/tombo) v1.5.1
