@@ -75,6 +75,7 @@ The bed6 file corresponding to each reference transcript in gene:
 Configuration file `conf.txt` can be edited by Vim text Editor in Linux system and contains several important parameters:
 
 -Long read: PacBio Iso-SeqIso-seq or DRS long reads with FASTA format
+
 -Genome_Annotion file `phe.txt`: Reference annotation with [GenePred](https://genome.ucsc.edu/FAQ/FAQformat.html#format9) format
 
 
