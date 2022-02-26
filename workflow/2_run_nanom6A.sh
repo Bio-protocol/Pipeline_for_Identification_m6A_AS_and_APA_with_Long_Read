@@ -34,11 +34,15 @@ dir=$output/guppy/$lib
 if [ ! -d "$dir/$lib" ]; then
        echo
        echo
+       echo '-----------------------------------------------'
        echo "[`date`] guppy"
        echo '-----------------------------------------------'
+       
        export PATH=$guppy_path:$PATH
        mkdir -p $dir
        guppy_basecaller -i $input -s $dir/$lib --num_callers $threads --recursive --fast5_out --flowcell $flowcell --kit $kit
+       
+       echo '-----------------------------------------------'
        echo "[`date`] Run complete for guppy"
        echo '-----------------------------------------------'
 fi
@@ -68,12 +72,15 @@ dir=$output/multi_to_single_fast5
 if [ ! -d "$dir/$lib" ]; then
         echo
         echo
+        echo '-----------------------------------------------'
         echo "[`date`] multi_to_single_fast5"
         echo '-----------------------------------------------'
+        
         mkdir -p $dir
         export PYTHONPATH=""
-        export PATH=$tombo_path:$PATH
         multi_to_single_fast5 -i $output/guppy/$lib/workspace -s $dir/$lib -t $threads --recursive
+        
+        echo '-----------------------------------------------'
         echo "[`date`] Run complete for single_to_multi_fast5"
         echo '-----------------------------------------------'
 fi
@@ -89,12 +96,14 @@ dir=$output/tombo
 if [ ! -f "$dir/${lib}.txt" ]; then
         echo
         echo
+        echo '-----------------------------------------------'
         echo "[`date`] tombo resquiggle $lib"
         echo '-----------------------------------------------'
         mkdir -p $dir
         export PYTHONPATH=""
         tombo resquiggle --basecall-group $basecall_group --overwrite $output/multi_to_single_fast5/$lib $transcripts --processes $threads --fit-global-scale --include-event-stde
         find $output/multi_to_single_fast5/$lib*/ -name "*.fast5" >$dir/$lib.txt
+        echo '-----------------------------------------------'
         echo "[`date`] Run complete for tombo resquiggle $lib"
         echo '-----------------------------------------------'
 fi
@@ -111,14 +120,17 @@ dir=$output/extract_raw_and_feature
 if [ ! -f "$dir/${lib}.feature.tsv" ]; then
         echo
         echo
+        echo '-----------------------------------------------'
         echo "[`date`] extract_raw_and_feature for $dir/$lib"
         echo '-----------------------------------------------'
+        
         mkdir -p $dir
         export PYTHONPATH=""
         
         # --chip reads first and last N base signal drop out, default:10.
         
         extract_raw_and_feature_fast --cpu=$threads --fl=$output/tombo/"$lib".txt -o $dir/$lib --clip=10
+        echo '-----------------------------------------------'
         echo "[`date`] Run complete for extract_raw_and_feature for $dir/$lib"
         echo '-----------------------------------------------'
 fi
@@ -137,10 +149,14 @@ dir=$output/m6A/$lib
 if [ ! -d "$dir/$lib" ]; then
         echo
         echo
+        echo '-----------------------------------------------'
         echo "[`date`] predicting m6A site for $dir/$lib"
         echo '-----------------------------------------------'
+        
         mkdir -p $dir/plot
         predict_sites --cpu $threads -i $output/extract_raw_and_feature/$lib -o $dir/$lib -r $bed -g $genome
+        
+        echo '-----------------------------------------------'
         echo "[`date`] Run complete for predicting m6A site for $dir/$lib"
         echo '-----------------------------------------------'
 fi
