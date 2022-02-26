@@ -26,6 +26,8 @@ echo "[`date`] nanom6A INSTALL BEGIN"
 echo '---------------------------------'
 
 conda env create -n nanom6A_env -f nanom6a.yaml
+wget http://forestry.fafu.edu.cn/tool/PRAPI/ont-guppy-cpu_3.6.1_linux64.tar.gz   # download guppy_3.6.1
+tar -xzvf ont-guppy-cpu_3.6.1_linux64.tar.gz
 
 echo '---------------------------------'
 echo "[`date`] nanom6A INSTALL COMPLETE"
