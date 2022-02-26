@@ -1,0 +1,70 @@
+[outputdir]
+## Name of the output file
+Output_dir=output/prapi
+[input file]
+## Name of the input pacbio fasta sequence file already fixed indels/mismatches
+Pacbio_reads=input/prapi/data/pacbio.fa
+##	Gene annotation
+Genome=input/prapi/data/new.fa
+Genome_Annotion=input/prapi/data/phe.txt
+IDP_isoform=
+## directory to gmap indexes
+GMAP_IndexesDir=input/prapi/db
+## name of gmap index
+GMAP_IndexesName=bamboo
+[Graph option]
+## HEX format color
+ir=#00FF00
+es=#8C4726
+alta=#8C0000
+altd=#008C8C
+altp=#006300
+Exon=#0000FF
+Intron=#000000
+UTR=#BFBFBF
+CDS=#000000
+cufflinksexon=#006300
+5'-5'=#1E90FF
+3'-3'=#A52A2A
+Fully_overlap=#90EE90
+NAT_F=#0000FF
+NAT_R=#008000
+[GMAP option]
+##Number of gmap worker threads
+GMAP_Process=4
+## Max length for one internal intron
+MaxIntron=8000
+[Polya option]
+## Width of peaks when searching for poly(A) sites
+Width_of_peaks=5
+## Minimum distance between any two poly(A) sites
+MinDist=25
+## Minimum number of trusted reads supporting a poly-A site
+MinSupport=1
+[ati option]
+## Width of peaks when searching for ati sites
+Width_of_peaks=5
+## Minimum distance between any two ati sites
+MinDist=25
+## Minimum number of trusted reads supporting a ati sites
+MinSupport=2
+[Global option]
+Multile_processing=False
+Genome_correction=False
+[Wig option]
+## if we plot wig file 
+Wig_plot=True
+## if we standardizing the wig 
+Normaltion=True
+## if the seq is Strand Specificity
+Strand_Specificity=True
+## lib groups
+## example: if we have four libs.two groups,use like this Lib1_Lib2 Lib3_Lib4;one group,use like this Lib1_Lib2_Lib3_Lib4;
+Group=Lib1_Lib2_Lib3_Lib4_Lib5_Lib6
+## wig lib,example:Lib*	libname	sorted_and_indexed_bam_file	HEX_color
+Lib1=BY1	input/prapi/data/new_bam/BY_Rep1.sort.bam	#006300
+Lib2=BY2	input/prapi/data/new_bam/BY_Rep2.sort.bam	#006300
+Lib3=BY3	input/prapi/data/new_bam/BY_Rep3.sort.bam	#006300
+Lib4=SY1	input/prapi/data/new_bam/SY_Rep1.sort.bam	#FF0000
+Lib5=SY2	input/prapi/data/new_bam/SY_Rep2.sort.bam	#FF0000
+Lib6=SY3	input/prapi/data/new_bam/SY_Rep3.sort.bam	#FF0000
