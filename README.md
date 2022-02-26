@@ -55,7 +55,7 @@ Each entry in a `FASTA` files consists of 2 lines:
 1. A sequence identifier with information about the sequencing run and the cluster. The exact contents of this line vary by based on the BCL to FASTQ conversion software used.  
 2. The sequence (the base calls; A, C, T, G and N).   
 
-The first entry of the input fasta :
+The first entry of the input data:
 ```
 >chr
 cctagcacaTTGAGTTTCATCTCATAACCCCCAGGCCTCTTTCCCCCTCCAACTTCATAGGCTTGATCCACTTATTAG...
@@ -89,6 +89,14 @@ Configuration file `conf.txt` can be edited by Vim text Editor in Linux system a
 
 ## Major steps
 
+### Install the dependence
+
+```
+sh workflow/1_install_environment.sh
+conda activate prapi_env
+pip install -i https://pypi.anaconda.org/gaoyubang/simple splicegrapher
+```
+
 ### Usage for Nanom6A
 
 #### Step 1: Download nanom6A package
@@ -97,13 +105,8 @@ Download nanom6A_2021_3_18.tar.gz package can be downloaded from following link:
 
 Make sure the package and the script in the same directory
 
-#### Step 2: Install the dependence
 
-```
-sh workflow/1_install_nanom6A.sh
-```
-
-#### Step 3: Identification of modified nucleotide using nanom6A
+#### Step 2: Identification of modified nucleotide using nanom6A
 
 ```
 sh workflow/2_run_nanom6A.sh
@@ -113,16 +116,10 @@ sh workflow/2_run_nanom6A.sh
 
 ### Usage for PRAPI
 
-#### Step 1: Download PRAPI package
+#### Identification of AS and APA 
 
 ```
-sh workflow/3_install_prapi.sh
-```
-
-#### Step 2: Identification of AS and APA 
-
-```
-sh workflow/4_run_prapi.sh
+sh workflow/3_run_prapi.sh
 ```
 
 
@@ -131,7 +128,7 @@ sh workflow/4_run_prapi.sh
 
 The result directory of __nanom6A__ includes ratio.x.tsv which contains the information of gene name, chromosome, the coordinate site of m6A, the number of m6A modified reads, the number of total reads, and the ratio of the m6A site. The file named genome_abandance.x.bed contains information of name and coordinate information of chromosome, gene name, ID and position of single FAST5 read and motif (kmer). The x in ratio.x.tsv and abandance.x.bed represents the probability of modification. The default probability is 0.5.
 
-The output figure provides structure of transcripts and m6A sites highlighted by red vertical line
+The output figure provides structure of transcripts and m6A sites highlighted by purple vertical line
 ![](graphs/figure2.jpg)
 
 
