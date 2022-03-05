@@ -20,7 +20,9 @@ bed=/path to bed6 file/
 #######################
 #######################
 
-#Basecalling using guppy (version 3.6.1)
+# Basecalling using guppy (version 3.6.1)
+# This configuration files should be consistent with your sequencing.
+# guppy_basecaller --print_workflows   #https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html
 flowcell=FLO-PRO002
 kit=SQK-RNA002
 
@@ -29,6 +31,7 @@ eval "$(conda shell.bash hook)"
 # Guppy can perform basecalling to generate FASTQ file and an additional FAST5 file that contains basecalling information, which is available to ONT customers. 
 # Users should be an existing customer or register an account through the Nanopore community to download Guppy.
 # https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revac_14dec2018/linux-guppy
+
 
 dir=$output/guppy/$lib
 if [ ! -d "$dir/$lib" ]; then
