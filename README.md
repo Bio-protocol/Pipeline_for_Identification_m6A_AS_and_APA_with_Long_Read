@@ -116,8 +116,16 @@ Download nanom6A_2021_3_18.tar.gz package can be downloaded from following link:
 
 Make sure the package and the script in the same directory
 
+#### Step 2: Test the environment for nanom6A
 
-#### Step 2: Identification of modified nucleotide using nanom6A
+```
+conda activate nanom6A_env
+tar -xvf nanom6A_2021_3_18.tar.gz && cd nanom6A_2021_3_18
+run_binary.sh
+```
+
+#### Step 3: Identification of modified nucleotide using nanom6A
+Before running this shell for identificating m6A, make sure your input date `genome file, transcipt file, bed file` perpared.
 
 ```
 sh workflow/2_run_nanom6A.sh
