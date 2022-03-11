@@ -1,5 +1,7 @@
 #!/bin/bash
 
+eval "$(conda shell.bash hook)"
+
 ### install tombo 
 # pip install numpy==1.19
 # pip install ont-tombo   #https://github.com/nanoporetech/tombo
