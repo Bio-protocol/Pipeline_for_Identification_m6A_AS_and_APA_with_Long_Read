@@ -10,7 +10,11 @@ echo '---------------------------------'
 echo "[`date`] tombo INSTALL BEGIN"
 echo '---------------------------------'
 
-conda env create -n tombo_env -f tombo.yaml
+conda env create -n tombo_env
+conda activate tombo_env
+pip install numpy==1.19
+pip install ont-tombo
+pip install ont-fast5-api
 
 echo '---------------------------------'
 echo "[`date`] tombo INSTALL COMPLETE"
