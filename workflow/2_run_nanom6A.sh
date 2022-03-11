@@ -21,8 +21,6 @@ bed=/path to bed6 file/
 #######################
 
 # Basecalling using guppy (version 3.6.1)
-# This configuration files should be consistent with your sequencing.
-# guppy_basecaller --print_workflows   #https://denbi-nanopore-training-course.readthedocs.io/en/latest/basecalling/basecalling.html
 flowcell=FLO-PRO002
 kit=SQK-RNA002
 
@@ -32,58 +30,51 @@ eval "$(conda shell.bash hook)"
 # Users should be an existing customer or register an account through the Nanopore community to download Guppy.
 # https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revac_14dec2018/linux-guppy
 
-
 dir=$output/$lib/guppy
-if [ ! -d "$dir/$lib" ]; then
+if [ ! -d "$dir" ]; then
        echo
        echo
-       echo '-----------------------------------------------'
        echo "[`date`] guppy"
        echo '-----------------------------------------------'
-       
-       export PATH=$guppy_path:$PATH
+       export PATH=${guppy_path}:$PATH
        mkdir -p $dir
        guppy_basecaller -i $input -s $dir --num_callers $threads --recursive --fast5_out --flowcell $flowcell --kit $kit
-       
-       echo '-----------------------------------------------'
        echo "[`date`] Run complete for guppy"
        echo '-----------------------------------------------'
 fi
 
 
-#Miniconda coule be install to manage environment
-#https://docs.conda.io/en/latest/miniconda.html#linux-installers
-#wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-#sh Miniconda3-latest-Linux-x86_64.sh
-#==> For changes to take effect, close and re-open your current shell
+# Miniconda coule be install to manage environment
+# https://docs.conda.io/en/latest/miniconda.html#linux-installers
+# wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+# sh Miniconda3-latest-Linux-x86_64.sh
+# ==> For changes to take effect, close and re-open your current shell
 
 
-#Convert merged single big fast5 into small size fast5 file
-#pip install ont-fast5-api
-#https://pypi.org/project/ont-fast5-api/
-#multi_to_single_fast5 -i $output/guppy/$i/workspace -s $dir/$lib -t 40 --recursive >$dir/$i/convert.log 2>&1
-#https://github.com/nanoporetech/ont_fast5_api/issues/40
+# Convert merged single big fast5 into small size fast5 file
+# pip install ont-fast5-api
+# https://pypi.org/project/ont-fast5-api/
+# multi_to_single_fast5 -i $output/guppy/$i/workspace -s $dir/$lib -t 40 --recursive >$dir/$i/convert.log 2>&1
+# https://github.com/nanoporetech/ont_fast5_api/issues/40
 
 # In this step, user should activate tombo in conda or put the tombo PATH in environment.
 # export PATH=/your tombo PATH/:$PATH
 # for example : 
-# export PATH=/home/Sorata/miniconda3/envs/tombo/bin:$PATH
+# export PATH=/home/Sorata/miniconda3/envs/tombo_env/bin:$PATH
 
 conda activate tombo_env
 
+
 dir=$output/$lib/tombo
-if [ ! -d "$dir/$lib" ]; then
+if [ ! -d "$dir" ]; then
         echo
         echo
-        echo '-----------------------------------------------'
         echo "[`date`] multi_to_single_fast5"
         echo '-----------------------------------------------'
-        
         mkdir -p $dir
         export PYTHONPATH=""
+        export PATH=${tombo_path}:$PATH
         multi_to_single_fast5 -i $output/$lib/guppy/workspace -s $dir -t $threads --recursive
-        
-        echo '-----------------------------------------------'
         echo "[`date`] Run complete for single_to_multi_fast5"
         echo '-----------------------------------------------'
 fi
@@ -99,14 +90,12 @@ basecall_group=Basecall_1D_000
 if [ ! -f "$dir/${lib}.txt" ]; then
         echo
         echo
-        echo '-----------------------------------------------'
         echo "[`date`] tombo resquiggle $lib"
         echo '-----------------------------------------------'
         mkdir -p $dir
         export PYTHONPATH=""
         tombo resquiggle --basecall-group $basecall_group --overwrite $dir $transcripts --processes $threads --fit-global-scale --include-event-stde
         find $dir -name "*.fast5" >$dir/$lib.txt
-        echo '-----------------------------------------------'
         echo "[`date`] Run complete for tombo resquiggle $lib"
         echo '-----------------------------------------------'
 fi
@@ -115,25 +104,22 @@ fi
 # In this case, user should activate nanom6A in conda or put the nanom6A PATH in environment PATH.
 # export PATH=/your nanom6A PATH/:$PATH
 # for example : 
-# export PATH=/home/Sorata/miniconda3/envs/nanom6A/bin:$PATH
+# export PATH=/home/Sorata/miniconda3/envs/nanom6A_env/bin:$PATH
 
 conda activate nanom6A_env
 
-dir=$output/${lib}/extract_raw_and_feature
+dir=$output/$lib/extract_raw_and_feature
 if [ ! -f "$dir/${lib}.feature.tsv" ]; then
         echo
         echo
-        echo '-----------------------------------------------'
         echo "[`date`] extract_raw_and_feature for $lib"
         echo '-----------------------------------------------'
-        
         mkdir -p $dir
         export PYTHONPATH=""
         
         # --chip reads first and last N base signal drop out, default:10.
         
-        extract_raw_and_feature_fast --cpu=$threads --fl=$output/$lib/tombo/"$lib".txt -o $dir/$lib --clip=10
-        echo '-----------------------------------------------'
+        python extract_raw_and_feature_fast.py --cpu=$threads --fl=$output/$lib/tombo/"$lib".txt -o $dir/$lib --clip=10
         echo "[`date`] Run complete for extract_raw_and_feature for $lib"
         echo '-----------------------------------------------'
 fi
@@ -149,19 +135,14 @@ fi
 #conda install -c bioconda minimap2
 
 dir=$output/$lib/m6A
-model=nanom6A_2021_3_18/bin/model
-if [ ! -d "$dir/$lib" ]; then
+model=nanom6A_2021_3_18/data/model
+if [ ! -d "$dir" ]; then
         echo
         echo
-        echo '-----------------------------------------------'
         echo "[`date`] predicting m6A site for $lib"
         echo '-----------------------------------------------'
-        
         mkdir -p $dir/plot
-        predict_sites --cpu $threads -i $output/$lib/extract_raw_and_feature -o $dir -r $bed -g $genome --model $model
-        
-        echo '-----------------------------------------------'
+        python predict_sites.py --cpu $threads -i $output/extract_raw_and_feature/$lib -o $dir -r $bed -g $genome --model $model
         echo "[`date`] Run complete for predicting m6A site for $lib"
         echo '-----------------------------------------------'
 fi
-
