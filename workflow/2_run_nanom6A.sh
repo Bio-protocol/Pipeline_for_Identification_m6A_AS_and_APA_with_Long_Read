@@ -149,6 +149,7 @@ fi
 #conda install -c bioconda minimap2
 
 dir=$output/m6A/$lib
+model=nanom6A_2021_3_18/bin/model
 if [ ! -d "$dir/$lib" ]; then
         echo
         echo
@@ -157,7 +158,7 @@ if [ ! -d "$dir/$lib" ]; then
         echo '-----------------------------------------------'
         
         mkdir -p $dir/plot
-        predict_sites --cpu $threads -i $output/extract_raw_and_feature/$lib -o $dir/$lib -r $bed -g $genome
+        predict_sites --cpu $threads -i $output/extract_raw_and_feature/$lib -o $dir/$lib -r $bed -g $genome --model $model
         
         echo '-----------------------------------------------'
         echo "[`date`] Run complete for predicting m6A site for $dir/$lib"
