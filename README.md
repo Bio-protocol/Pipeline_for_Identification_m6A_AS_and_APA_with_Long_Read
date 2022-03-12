@@ -43,11 +43,6 @@ This is the workflow to show a step-by-step pipeline to identify m6A, AS and APA
 
 ### tombo
 In this step you should provide reference transcript sequence for tombo to resquiggle.
-`reference transcript sequence` could be extracted by gffread.
-For example:
-```
-gffread -w transcript.fa -g genome.fa *.gtf
-```
 
 
 ### nanom6A
