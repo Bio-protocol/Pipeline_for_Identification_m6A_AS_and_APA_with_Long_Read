@@ -116,7 +116,7 @@ Make sure the package and the script in the same directory
 ```
 conda activate nanom6A_env
 tar -xvf nanom6A_2021_3_18.tar.gz && cd nanom6A_2021_3_18
-sh run_binary.sh
+sh  run_source_code.sh
 ```
 
 #### Step 3: Identification of modified nucleotide using nanom6A
