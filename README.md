@@ -43,7 +43,7 @@ This is the workflow to show a step-by-step pipeline to identify m6A, AS and APA
 
 ### tombo
 In this step you should provide reference transcript sequence for tombo to resquiggle.
-
+- Example transcript file in tombo : `input/nano/transcript.fa`
 
 ### nanom6A
 #### Files in input/nano are testing for nanom6A but not guppy or tombo. 
